@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>Laporan Surat kontrol </title>
+</head>
+<style type ="text/css">
+	body{
+		font-family: Healvetica;
+		font-size: 12;
+	}
+	table{
+		border-collapse: Collapse; width: 100%;
+		font-size: 11px;
+	}
+
+	</style>
+	<script type="text/JavaScript">
+
+		function cetak(tombol){
+			tombol.style.visibility='collapse';
+			if(tombol.style.visibility=='collapse'){
+				if(confirm('Anda Yakin Mau Mencetak ?')){
+					setTimeout('window.print()','1000');
+					setTimeout('window.print()','2000');
+			}
+			else{
+				tombol.style.visibility='visible';
+			}
+
+			}
+		}
+</script>
+<body>
+	<table>
+		<tr>
+			<td>
+				<div>
+					<tr id="trTombol">
+						<td id="trTombol" class="noline" colspan="5" align="right">
+							<input id="btnPrint" type="button" value="Print" onClick="cetak(document.getElementById('trTombol'));"/>
+							<input id="btnTutup" type="button" value="Print" onClick="windows.close();"/></td>
+							</tr>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+				<table align="center" style="padding-top:10px;" border="1">
+					<thead>
+						<tr>
+							<th colspan="19">
+								<table border="0">
+									<tr>
+										<th width="10" rowspan="4"><img style="width:70px; height:70px;" src="logo.jpg"></th>
+										<th width="600" align="left" style="font-size:14px;"><strong>RUMAH SAKIT BHAYANGKARA KEDIRI</strong</th>
+										</tr>
+										<tr>
+											<th width="600" align="left" style="font-size:16px;"><strong>LAPORAN SURAT KONTROL</strong</th>
+										</tr>
+										<tr>
+											<th width="600" align="left"><strong> UNIT : SEMUA UNIT</strong></th>
+										</tr>
+										<tr>
+											<th width="600" align="left"><strong>PERIODE : 09 Maret 2022 S/D 09 Maret 2022, SHIFT: SEMUA SHIFT</strong>
+										</tr> 
+									</table>
+								</th>
+							</th>
+							<tr>
+								<th width="100" align ="center">NO SURAT KONTROL</th>
+								<th width="100" align ="center">TGL RENCANA KONTROL</th>
+								<th width="110" align ="center">NO SEP</th>
+								<th width="20" align ="center">NO KARTU</th>
+								<th width="100" align ="center">NAMA PASIEN</th>
+								<th width="50" align ="center">POLI</th>
+								<th width="70" align ="center">DIAGNOSA</th>
+							</tr>
+						</thead>
+							<tr>
+							<td colspan="19" height="15" style="font-size: 14px;"><b>LABORATORIUM KLINIK</b></td>
+						</tr>
+
+
