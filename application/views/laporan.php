@@ -53,29 +53,41 @@ s/d
 <legend style="font-style:bold">List Rencana Kontrol</legend>
 <table style="padding-bottom: 10px;">
     <tr>
-        <td> 
-        <!--   <select class="easyui-combobox" id="cmbfiltertgl" style="width:130px">
+      <td>Periode <select class="easyui-combobox" id="cmbfiltertgl" style="width:130px">
           <option value="1">Tgl. Input</option>
           <option value="2">Tgl. Kontrol / SPRI</option>
-        </select> -->
-          <label for="poli">Poli:</label>
+        </select>
+      </td>
+      
+        <td>:</td>
+        <td class="jarak">
+          <input id="tgl_rencana_kontrol" value="date(now)" name="tgl_rencana_kontrol" class="easyui-datebox wtext" data-options="prompt:'YYYY-MM-DD'" style="width:110px"2>
+s/d
+<input id="tgl_rencana_kontrol2" value="date(now)" name="tgl_rencana_kontrol2" class="easyui-datebox wtext" data-options="prompt:'YYYY-MM-DD'" style="width:110px">
+<td> 
+        
+  <label for="poli">Poli:</label>
 
   <input id="kd_poli" class="easyui-combobox" data-options="required:true,prompt:'Pilih Poli...',
-
                     valueField:'kdpoli',
                     textField:'nm_poli',
                     url: 'filter/getPoli',
-                    " style="width:283px">
-      </td>
-        <td>Periode:</td>
-        <td class="jarak">
-          <input id="tgl_rencana_kontrol" value="date(now)" name="tgl_rencana_kontrol" class="easyui-datebox wtext" data-options="prompt:'YYYY-MM-DD'">
-s/d
-<input id="tgl_rencana_kontrol2" value="date(now)" name="tgl_rencana_kontrol2" class="easyui-datebox wtext" data-options="prompt:'YYYY-MM-DD'">
+                    " style="width:200px">
+ <input class="easyui-combobox" id="txtnokartu_filter" data-options="prompt:'No Kartu...' ,
+                    valueField:'no_kartu',
+                    textField:'no_kartu',
+                    url: 'filter/getKartu'," style="width: 160px">
+ <input class="easyui-combobox" id="txtnama_filter" data-options="prompt:'Nama Pasien...' ,
+                    valueField:'nm_pasien',
+                    textField:'nm_pasien',
+                    url: 'filter/getNama'," style="width: 160px">    
+ <a href="javascript:void(0)" type="button" class="easyui-linkbutton" id="cari" data-options="iconCls:'icon-search'">Cari</a>
 
 <a href="javascript:void(0)" type="button" id="preview" class="easyui-linkbutton"  data-options="iconCls:'icon-search'">Preview</a>
-  <br><br>
+
+ 
       </td>
+
     </tr>
 </table>
 <table id="grid-rencana_kontrol" class="easyui-datagrid" height="400"></table>
@@ -117,7 +129,7 @@ s/d
                     return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
             };
             
-            $.fn.datebox.defaults.parser = function(s){
+    $.fn.datebox.defaults.parser = function(s){
 		if (!s) return new Date();
 		var ss = s.split('-');
 		var y = parseInt(ss[0],10);
@@ -135,24 +147,21 @@ s/d
  	
             $('#preview').click(function () {
               var cmbpoli= $("#kd_poli").combobox('getValue', false);    
-              
-              // if (opts.separator == ','){
               var  cmbtgl = $("#tgl_rencana_kontrol").textbox('getValue',  false);
               var  cmbtgl2 = $("#tgl_rencana_kontrol2").textbox('getValue',  false);
     		
-              // cmbunit = String(cmbunit).replace(",","','","gi");
-              
               var url = 'filter/preview?kd_poli='+cmbpoli+'&tgl_rencana_kontrol='+cmbtgl+'&tgl_rencana_kontrol2='+cmbtgl2;
               var win = window.open(url,'_blank');
               win.focus();
               });
-  
 
+        
             $('#grid-rencana_kontrol').datagrid({
               url : 'filter/getKontrol',
               singleSelect:true,
               rownumbers:'true',
               pagination:'true',
+              pageList : [10,20,30,40,50],
               columns:[[
                       {field:'no_surat_kontrol',title:'NO SURAT KONTROL', width:180, align:'center'},
                       {field:'tgl_rencana_kontrol',title:'TGL RENCANA KONTROL', width:130, align:'center'},
@@ -192,6 +201,17 @@ s/d
             //           $("#dttgllahir").datebox('setValue',row.tgllahir);
             // }
         });
+            $('#cari').click(function () {
+            $('#grid-rencana_kontrol').datagrid('load',{
+            // filtertgl: $("#cmbfiltertgl").combobox('getValue'),
+            periode1: $("#tgl_rencana_kontrol").datebox('getValue'),
+            periode2: $("#tgl_rencana_kontrol2").datebox('getValue'),
+            poli: $("#kd_poli").combobox('getValue'),
+
+            no_kartu: $("#txtnokartu_filter").textbox('getValue'),
+            nama: $("#txtnama_filter").textbox('getValue')
+                });
+            });
     });
 
 	// });
