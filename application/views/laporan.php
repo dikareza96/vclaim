@@ -147,11 +147,12 @@ s/d
 		$(document).ready(function() {
  	
             $('#preview').click(function () {
+              var cmbfiltertgl = $("#cmbfiltertgl").combobox('getValue');
               var cmbpoli= $("#kd_poli").combobox('getValue', false);    
               var  cmbtgl = $("#tgl_rencana_kontrol").textbox('getValue',  false);
               var  cmbtgl2 = $("#tgl_rencana_kontrol2").textbox('getValue',  false);
     		
-              var url = 'filter/preview?kd_poli='+cmbpoli+'&tgl_rencana_kontrol='+cmbtgl+'&tgl_rencana_kontrol2='+cmbtgl2;
+              var url = 'filter/preview?filtertgl='+cmbfiltertgl+'&kd_poli='+cmbpoli+'&tgl_rencana_kontrol='+cmbtgl+'&tgl_rencana_kontrol2='+cmbtgl2;
               var win = window.open(url,'_blank');
               win.focus();
               });

@@ -78,7 +78,7 @@
 				
 				?>
 										<!-- <tr> -->
-											<th width="600" align="left"><strong>PERIODE : <?php echo $tgl_rencana_kontrol?> s/d <?php echo $tgl_rencana_kontrol2?></strong></th>
+											<th width="600" align="left"><strong><?php echo $periode ?> : <?php echo $tgl_rencana_kontrol?> s/d <?php echo $tgl_rencana_kontrol2?></strong></th>
 										<!-- </tr>  -->
 									</table>
 								</th>
