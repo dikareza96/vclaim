@@ -204,7 +204,7 @@ s/d
         });
             $('#cari').click(function () {
             $('#grid-rencana_kontrol').datagrid('load',{
-            // filtertgl: $("#cmbfiltertgl").combobox('getValue'),
+            filtertgl: $("#cmbfiltertgl").combobox('getValue'),
             periode1: $("#tgl_rencana_kontrol").datebox('getValue'),
             periode2: $("#tgl_rencana_kontrol2").datebox('getValue'),
             poli: $("#kd_poli").combobox('getValue'),

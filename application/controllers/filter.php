@@ -12,19 +12,14 @@ class Filter extends CI_Controller {
 
 
 	public function index()
-	{
-			
+	{		
 		$data['poli'] = $this->Resource->show('bpjs_ref_poli')->result();
-		
 		$this->load->view('laporan',$data);
-		
-
 
 	}
 	public function getPoli(){
 		$data = $this->Resource->show('bpjs_ref_poli')->result_array();
 		header('Content-Type: application/json');
-
         echo json_encode($data);
 
 	}
@@ -42,7 +37,6 @@ class Filter extends CI_Controller {
 		 			FROM bpjs_rencana_kontrol";
         $data = $this->db->query($query)->result_array();
 		header('Content-Type: application/json');
-
         echo json_encode($data);
 
 	}
@@ -56,7 +50,7 @@ class Filter extends CI_Controller {
 		// $periode1 = isset($_POST['periode2']) ? $this->input->post('periode1') : '';
 		// $periode2 = isset($_POST['periode2']) ? $this->input->post('periode2') : '';
 		// $poli = isset($_POST['poli']) ? $this->input->post('[poli]') : '';
-
+		$filtertgl = $this->input->post('filtertgl');
 		$periode1 = $this->input->post('periode1');
 		$periode2 = $this->input->post('periode2');
 		$poli = $this->input->post('poli');
@@ -66,183 +60,99 @@ class Filter extends CI_Controller {
 
 		
 		$offset = ($page-1)*$rows;
- 
 		$result = array();
 		// $where = 'WHERE a.tgl_rencana_kontrol BETWEEN '.'2022-02-01'.' AND '.'2022-03-14'.'';
 		// $tgl1= '2022-03-01';
 		// $tgl2= '2022-03-14';
-		if(empty($periode1 || $periode2 || $poli || $no_kartu || $nama)){
+		if(empty( $periode1 || $periode2|| $poli || $no_kartu || $nama)){
 			$query = "SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			ORDER BY a.tgl_rencana_kontrol DESC ";
 			$result = $this->db->query($query)->result_array();
-    	header('Content-Type: application/json');
-        echo json_encode($result);
+    		header('Content-Type: application/json');
+        	echo json_encode($result);
 		}
 
 		elseif (empty( $poli || $no_kartu || $nama)) {
-			$rs = mysqli_query($koneksi,'SELECT COUNT(*)
-			FROM bpjs_rencana_kontrol a
-			JOIN bpjs_ref_poli b
-			ON a.kd_poli = b.kdpoli
-			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'" 
+			// $rs = mysqli_query($koneksi,'SELECT COUNT(*)
+			// FROM bpjs_rencana_kontrol a
+			// JOIN bpjs_ref_poli b
+			// ON a.kd_poli = b.kdpoli
+			// WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'" 
 			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		$row = mysqli_fetch_row($rs);
-		$result["total"] = $row[0];
-		$rs = mysqli_query($koneksi,'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+			// ORDER BY a.tgl_rencana_kontrol DESC');
+			// $row = mysqli_fetch_row($rs);
+			// $result["total"] = $row[0];
+		$rs = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-
-		$items = array();
-		while($row = mysqli_fetch_object($rs)){
-		    array_push($items, $row);
-		}
-		$result["rows"] = $items;
-		
-	
-		header('Content-Type: application/json');
-
-        echo json_encode($result);
+			ORDER BY a.tgl_rencana_kontrol DESC';
+		// $items = array();
+		// while($row = mysqli_fetch_object($rs)){
+		//     array_push($items, $row);
+		// }
+		// $result["rows"] = $items;
+			$result = $this->db->query($rs)->result_array();
+			header('Content-Type: application/json');
+        	echo json_encode($result);
 		}
 
 		elseif (empty( $no_kartu || $nama)) {
-			$rs = mysqli_query($koneksi,'SELECT COUNT(*)
-			FROM bpjs_rencana_kontrol a
-			JOIN bpjs_ref_poli b
-			ON a.kd_poli = b.kdpoli
-			WHERE a.kd_poli = "'.$poli.'"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		$row = mysqli_fetch_row($rs);
-		$result["total"] = $row[0];
-		$rs = mysqli_query($koneksi,'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+	
+		$rs = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'"
 			AND a.kd_poli = "'.$poli.'"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-
-		$items = array();
-		while($row = mysqli_fetch_object($rs)){
-		    array_push($items, $row);
-		}
-		$result["rows"] = $items;
-		
-	
-		header('Content-Type: application/json');
-
-        echo json_encode($result);
+			ORDER BY a.tgl_rencana_kontrol DESC';
+			$result = $this->db->query($rs)->result_array();
+			header('Content-Type: application/json');
+        	echo json_encode($result);
 		}
 		elseif (empty( $poli || $nama)) {
-			$rs = mysqli_query($koneksi,'SELECT COUNT(*)
-			FROM bpjs_rencana_kontrol a
-			JOIN bpjs_ref_poli b
-			ON a.kd_poli = b.kdpoli
-			WHERE a.kd_poli = "'.$poli.'"
 			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		$row = mysqli_fetch_row($rs);
-		$result["total"] = $row[0];
-		$rs = mysqli_query($koneksi,'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+		$rs = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'"
 			AND a.no_kartu LIKE "%'.$no_kartu.'%"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-
-		$items = array();
-		while($row = mysqli_fetch_object($rs)){
-		    array_push($items, $row);
-		}
-		$result["rows"] = $items;
-		
-	
-		header('Content-Type: application/json');
-
-        echo json_encode($result);
+			ORDER BY a.tgl_rencana_kontrol DESC';
+			$result = $this->db->query($rs)->result_array();
+			header('Content-Type: application/json');
+        	echo json_encode($result);
 		}
 		elseif (empty( $poli || $no_kartu)) {
-			$rs = mysqli_query($koneksi,'SELECT COUNT(*)
-			FROM bpjs_rencana_kontrol a
-			JOIN bpjs_ref_poli b
-			ON a.kd_poli = b.kdpoli
-			WHERE a.kd_poli = "'.$poli.'"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		$row = mysqli_fetch_row($rs);
-		$result["total"] = $row[0];
-		$rs = mysqli_query($koneksi,'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+		$rs = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'"
 			AND a.nm_pasien LIKE "%'.$nama.'%"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-
-		$items = array();
-		while($row = mysqli_fetch_object($rs)){
-		    array_push($items, $row);
+			ORDER BY a.tgl_rencana_kontrol DESC';
+			$result = $this->db->query($rs)->result_array();
+			header('Content-Type: application/json');
+        	echo json_encode($result);
 		}
-		$result["rows"] = $items;
-		
-	
-		header('Content-Type: application/json');
-
-        echo json_encode($result);
-		}
-
 		else{
-			$rs = mysqli_query($koneksi,'SELECT COUNT(*)
-			FROM bpjs_rencana_kontrol a
-			JOIN bpjs_ref_poli b
-			ON a.kd_poli = b.kdpoli
-			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'" 
-			AND a.kd_poli = "'.$poli.'"
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		// $row = $this->db->query($rs)->result();
-		// $rs = mysql_query("select count(*) from item where " . $where);
-		$row = mysqli_fetch_row($rs);
-		$result["total"] = $row[0];
-		// $data = $this->Resource->show('bpjs_rencana_kontrol')->result_array();
-		$rs = mysqli_query($koneksi,'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+			
+		$rs = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 			FROM bpjs_rencana_kontrol a
 			JOIN bpjs_ref_poli b
 			ON a.kd_poli = b.kdpoli
 			WHERE a.tgl_rencana_kontrol BETWEEN "'.$periode1.'" AND "'.$periode2.'"
 			AND a.kd_poli = "'.$poli.'"
-			
-			ORDER BY a.tgl_rencana_kontrol DESC');
-		// limit "'.$offset.'","'.$rows.'" 
-        // $data = $this->db->query($query)->result_array();
-
-		$items = array();
-		while($row = mysqli_fetch_object($rs)){
-		    array_push($items, $row);
-		}
-		$result["rows"] = $items;
-		// $warning = "TIDAK ADA DATA";
-	
+			ORDER BY a.tgl_rencana_kontrol DESC';
+			$result = $this->db->query($rs)->result_array();
 			header('Content-Type: application/json');
-
-        echo json_encode($result);
-
-
-		
+        	echo json_encode($result);
 		}
 		
-
 	}	
 	public function test(){
 		$result = array();
