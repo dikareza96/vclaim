@@ -66,13 +66,7 @@ s/d
 <input id="tgl_rencana_kontrol2" value="date(now)" name="tgl_rencana_kontrol2" class="easyui-datebox wtext" data-options="prompt:'YYYY-MM-DD'" style="width:110px">
 <td> 
         
-  <label for="poli">Poli:</label>
-
-  <input id="kd_poli" class="easyui-combobox" data-options="required:true,prompt:'Pilih Poli...',
-                    valueField:'kdpoli',
-                    textField:'nm_poli',
-                    url: 'filter/getPoli',
-                    " style="width:200px">
+  
  <input class="easyui-combobox" id="txtnokartu_filter" data-options="prompt:'No Kartu...' ,
                     valueField:'no_kartu',
                     textField:'no_kartu',
@@ -80,7 +74,14 @@ s/d
  <input class="easyui-combobox" id="txtnama_filter" data-options="prompt:'Nama Pasien...' ,
                     valueField:'nm_pasien',
                     textField:'nm_pasien',
-                    url: 'filter/getNama'," style="width: 160px">    
+                    url: 'filter/getNama'," style="width: 160px"> 
+                    <label for="poli">Poli:</label>
+
+  <input id="kd_poli" class="easyui-combobox" data-options="prompt:'Pilih Poli...',
+                    valueField:'kdpoli',
+                    textField:'nm_poli',
+                    url: 'filter/getPoli',
+                    " style="width:200px">   
  <a href="javascript:void(0)" type="button" class="easyui-linkbutton" id="cari" data-options="iconCls:'icon-search'">Cari</a>
 
 <a href="javascript:void(0)" type="button" id="preview" class="easyui-linkbutton"  data-options="iconCls:'icon-search'">Preview</a>
