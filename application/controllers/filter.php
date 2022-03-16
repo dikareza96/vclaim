@@ -336,8 +336,8 @@ class Filter extends CI_Controller {
 	}
 	
 	function dateFormatIndonesia($format, $tanggal = "now", $bahasa="id"){
-		$en= array("Sun", "Mon", "Tue", "Wed","Thu","Fri", "Sat",
-		"Jan","Feb","Mar","Apr", "May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+		$en= array("minggu", "Senin", "Selasa", "Rabu","kamis","Jumat", "Sabtu",
+		"Januari","Febuari","Maret","April", "Mei","Juni","Juli","Augustus","September","Oktober","November","Desember");
 		$id = array("Minggu", "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu",
 		"Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
@@ -345,6 +345,11 @@ class Filter extends CI_Controller {
 		str_replace(search, replace, subject);
 
 	}
+<<<<<<< HEAD
+	
+		
+	}
+=======
 function testaldo(){
 	
 
@@ -355,3 +360,4 @@ function testaldo(){
 
 	
 }
+>>>>>>> c619fa32ca519514932ebaa8dd4a6ee6f786d41b
