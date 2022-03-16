@@ -134,7 +134,7 @@
 </table>
 <table align="center" style="padding-top: 10px;" border="0">
 	<tr>
-		<td width="1200" align="right" style="font-size:12px;">Kediri, <?php echo $date?></td>                   
+		<td width="1200" align="right" style="font-size:12px;">Kediri, <?php echo $tgl?></td>                   
 	</tr>
 </table>
 <table border="0">
