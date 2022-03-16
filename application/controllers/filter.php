@@ -279,8 +279,8 @@ class Filter extends CI_Controller {
 		$kd_poli = $this->input->get('kd_poli');
 		$tgl_rencana_kontrol = $this->input->get('tgl_rencana_kontrol');
 		$tgl_rencana_kontrol2 = $this->input->get('tgl_rencana_kontrol2');
-		$en= array("Sun", "Mon", "Tue", "Wed","Thu","Fri", "Sat",
-		"January","February","March","Apr", "May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+		$en= array("Sunday", "Monday", "Tuesday", "Wednesday","Thursday","Friday", "Saturday",
+		"January","February","March","April", "May","June","July","August","September","October","November","Desember");
 		$id = array("Minggu", "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu",
 		"Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
@@ -345,11 +345,8 @@ class Filter extends CI_Controller {
 		str_replace(search, replace, subject);
 
 	}
-<<<<<<< HEAD
 	
 		
-	}
-=======
 function testaldo(){
 	
 
@@ -360,4 +357,3 @@ function testaldo(){
 
 	
 }
->>>>>>> c619fa32ca519514932ebaa8dd4a6ee6f786d41b
