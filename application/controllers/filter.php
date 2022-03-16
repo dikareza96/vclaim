@@ -336,10 +336,13 @@ class Filter extends CI_Controller {
 		str_replace(search, replace, subject);
 
 	}
-function test()
-{
+function test(){
+	
 
 }
+	function dika(){
+		
+	}
 
 	
 }
