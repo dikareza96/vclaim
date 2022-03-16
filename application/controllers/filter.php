@@ -279,6 +279,12 @@ class Filter extends CI_Controller {
 		$kd_poli = $this->input->get('kd_poli');
 		$tgl_rencana_kontrol = $this->input->get('tgl_rencana_kontrol');
 		$tgl_rencana_kontrol2 = $this->input->get('tgl_rencana_kontrol2');
+		$en= array("Sun", "Mon", "Tue", "Wed","Thu","Fri", "Sat",
+		"January","February","March","Apr", "May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+		$id = array("Minggu", "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu",
+		"Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+
+		
 
 		if($filtertgl == 2){
 			$query_poli = 'SELECT * FROM bpjs_ref_poli WHERE kdpoli= "'.$kd_poli.'"';
@@ -286,9 +292,11 @@ class Filter extends CI_Controller {
 			$data['tgl_rencana_kontrol']= $tgl_rencana_kontrol;
 			$data['tgl_rencana_kontrol2']= $tgl_rencana_kontrol2;
 			$data['periode'] = 'Tgl. Kontrol/SPRI';
-			$data['date'] = date("d M Y h:i:s");
-			
-			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
+			// return str_replace($en, $bahasa, date($format, strtotime($tanggal)));
+			// 	str_replace(search, replace, subject);
+			$datenow = date("d M Y h:i:s");
+			$data['tgl'] = str_replace($en, $id, strftime("%d %B %Y", strtotime($datenow)));
+ 			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
 				ON a.kd_poli = b.kdpoli
@@ -307,8 +315,9 @@ class Filter extends CI_Controller {
 			$data['tgl_rencana_kontrol']= $tgl_rencana_kontrol;
 			$data['tgl_rencana_kontrol2']= $tgl_rencana_kontrol2;
 			$data['periode'] = 'Tgl. Input';
-			$data['date'] = date("d M Y h:i:s");
-			
+			//$data['date'] = date("d M Y h:i:s");
+			$datenow = date("d M Y h:i:s");
+			$data['tgl'] = str_replace($en, $id, date(" %d %B %Y h:i:s", strtotime($datenow)));
 			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
@@ -336,6 +345,19 @@ class Filter extends CI_Controller {
 		str_replace(search, replace, subject);
 
 	}
+<<<<<<< HEAD
 	
 		
 	}
+=======
+function testaldo(){
+	
+
+}
+	function dika(){
+
+	}
+
+	
+}
+>>>>>>> c619fa32ca519514932ebaa8dd4a6ee6f786d41b
