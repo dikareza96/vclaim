@@ -87,11 +87,11 @@
 							<tr>
 								<th width="10" align ="center">NO</th>
 
-								<th width="100" align ="center">NO SURAT KONTROL</th>
-								<th width="100" align ="center">TGL RENCANA KONTROL</th>
-								<th width="110" align ="center">NO SEP</th>
+								<th width="60" align ="center">NO SURAT KONTROL</th>
+								<th width="50" align ="center">TGL RENCANA KONTROL</th>
+								<th width="80" align ="center">NO SEP</th>
 								<th width="50" align ="center">NO KARTU</th>
-								<th width="100" align ="center">NAMA PASIEN</th>
+								<th width="120" align ="center">NAMA PASIEN</th>
 								<th width="50" align ="center">POLI</th>
 								<th width="70" align ="center">DIAGNOSA</th>
 							</tr>
