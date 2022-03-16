@@ -134,7 +134,7 @@
 </table>
 <table align="center" style="padding-top: 10px;" border="0">
 	<tr>
-		<td width="1200" align="right" style="font-size:12px;">Kediri, 09 Maret 2022 09:35:15</td>                   
+		<td width="1200" align="right" style="font-size:12px;">Kediri, <?php echo $date?></td>                   
 	</tr>
 </table>
 <table border="0">

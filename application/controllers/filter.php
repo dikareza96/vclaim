@@ -273,6 +273,7 @@ class Filter extends CI_Controller {
 	}
 	public function preview()
 	{
+		date_default_timezone_set("Asia/Jakarta");
 		$filtertgl = $this->input->get('filtertgl');
 		$kd_poli = $this->input->get('kd_poli');
 		$tgl_rencana_kontrol = $this->input->get('tgl_rencana_kontrol');
@@ -284,8 +285,8 @@ class Filter extends CI_Controller {
 			$data['tgl_rencana_kontrol']= $tgl_rencana_kontrol;
 			$data['tgl_rencana_kontrol2']= $tgl_rencana_kontrol2;
 			$data['periode'] = 'Tgl. Kontrol/SPRI';
+			$data['date'] = date("d M Y h:i:s");
 			
-	
 			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
@@ -295,7 +296,6 @@ class Filter extends CI_Controller {
 				ORDER BY a.tgl_rencana_kontrol DESC
 				';
 	
-			
 			$data['preview'] = $this->db->query($query)->result();
 			 // $data['preview'] = $this->Resource->edit($where,'bpjs_rencana_kontrol')->result();
 			// echo json_encode($data1);
@@ -306,8 +306,8 @@ class Filter extends CI_Controller {
 			$data['tgl_rencana_kontrol']= $tgl_rencana_kontrol;
 			$data['tgl_rencana_kontrol2']= $tgl_rencana_kontrol2;
 			$data['periode'] = 'Tgl. Input';
-	
-	
+			$data['date'] = date("d M Y h:i:s");
+			
 			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
