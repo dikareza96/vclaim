@@ -295,7 +295,7 @@ class Filter extends CI_Controller {
 			// return str_replace($en, $bahasa, date($format, strtotime($tanggal)));
 			// 	str_replace(search, replace, subject);
 			$datenow = date("d M Y h:i:s");
-			$data['tgl'] = str_replace($en, $id, strftime("%d %B %Y", strtotime($datenow)));
+			$data['tgl'] = str_replace($en, $id, strftime("%d %B %Y %H:%M:%S", strtotime($datenow)));
  			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
@@ -317,7 +317,7 @@ class Filter extends CI_Controller {
 			$data['periode'] = 'Tgl. Input';
 			//$data['date'] = date("d M Y h:i:s");
 			$datenow = date("d M Y h:i:s");
-			$data['tgl'] = str_replace($en, $id, date("%d %B %Y %H %M h:i:s", strtotime($datenow)));
+			$data['tgl'] = str_replace($en, $id, date("%d %B %Y %H:%M:%S", strtotime($datenow)));
 			$query = 'SELECT a.no_surat_kontrol, a.tgl_rencana_kontrol,a.no_sep ,a.no_kartu, a.nm_pasien,a.kd_poli ,b.nm_poli , a.diagnosa
 				FROM bpjs_rencana_kontrol a
 				JOIN bpjs_ref_poli b
@@ -346,8 +346,8 @@ class Filter extends CI_Controller {
 
 	}
 	
-		
-function testaldo(){
+	
+	function testaldo(){
 	
 
 }
