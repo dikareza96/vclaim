@@ -273,6 +273,7 @@ class Filter extends CI_Controller {
 	}
 	public function preview()
 	{
+		setlocale (LC_TIME, 'INDONESIA');
 		date_default_timezone_set("Asia/Jakarta");
 		$filtertgl = $this->input->get('filtertgl');
 		$kd_poli = $this->input->get('kd_poli');
@@ -323,9 +324,16 @@ class Filter extends CI_Controller {
 
 
 		}
-		
-		
+	}
+	
+	function dateFormatIndonesia($format, $tanggal = "now", $bahasa="id"){
+		$en= array("Sun", "Mon", "Tue", "Wed","Thu","Fri", "Sat",
+		"Jan","Feb","Mar","Apr", "May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+		$id = array("Minggu", "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu",
+		"Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
+		return str_replace($en, $bahasa, date($format, strtotime($tanggal)));
+		str_replace(search, replace, subject);
 
 	}
 
