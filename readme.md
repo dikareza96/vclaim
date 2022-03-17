@@ -1,7 +1,7 @@
 
-## CMS Resume
+## Laporan Surat Kontrol Vclaim
 
-Aplikasi Content Management System(CMS) untuk [Resume](https://themeforest.net/item/lonon-resume-portfolio-template/24100324)
+Menampilkan data rencana kontrol serta dapat mem-filter data dan melihat hasil laporannya.
 
 
 #### Teknologi
