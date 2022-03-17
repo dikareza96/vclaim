@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/easyui2/easyui.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/easyui2/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/easyui2/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/easyui2/demo.css">
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui/jquery.min.js"></script> -->
-<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/easyui2/jquery-1.8.0.min.js"></script>
 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui2/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui2/easyloader.js"></script>
@@ -16,7 +16,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui2/plugins/jquery.textbox.js"></script>
       <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui/plugins/jquery.validatebox.js"></script> -->
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/easyui2/plugins/jquery.linkbutton.js"></script>
-      <script  type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>	
+      <script  type="text/javascript" src="<?php echo base_url(); ?>assets/easyui2/jquery.validate.min.js"></script>	
  
 
 <title>Laporan</title>
